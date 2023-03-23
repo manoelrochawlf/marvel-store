@@ -5,8 +5,8 @@ import { HeaderContainer, HeaderText } from "./styles";
 const Header = () => {
     return ( 
         <HeaderContainer>
-            <HeaderText>MARVEL</HeaderText>
-            <ShoppingCart />
+                <HeaderText>MARVEL COMICS</HeaderText>
+                <ShoppingCart />
         </HeaderContainer>
      );
 }
