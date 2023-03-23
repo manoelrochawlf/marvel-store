@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`   
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    justify-content: space-between;
     width: 100%;
-    height: 3rem;
+    height: 3.5rem;
+    padding: 1rem;
 `
-export const HeaderText = styled.h1`   
+
+export const HeaderText = styled.h1`
     font-family: 'Marvel', sans-serif;
     color: white;
 `
+
 
