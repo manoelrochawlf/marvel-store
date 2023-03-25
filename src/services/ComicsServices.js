@@ -8,5 +8,14 @@ export const ComicsService = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+  ComicById: async (id) => {
+    try {
+      const res = await Api.get(`/comics/${id}`);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
 }
