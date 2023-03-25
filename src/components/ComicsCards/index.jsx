@@ -13,6 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import { ComicsService } from "../../services/ComicsServices";
 import AddShoppingCart from "../../assets/icons/AddShoppingCart";
+import { Link } from "react-router-dom";
 
 const ComicsCards = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -53,24 +54,30 @@ const ComicsCards = () => {
       };
 
         return (
-            <Container>  
-              <ContentComics>
-                {comics.slice(currentPage * 10, currentPage * 10 + 10).map((comic) => (
-                      <CardContainer key={comic.id}>
-                          <ImageContainer>
-                            {rareComics.includes(comic.id) && <h3>Raro</h3>}
-                            <AddCartContainer>
-                              <AddShoppingCart />
-                            </AddCartContainer>
-                            </ImageContainer>
-                            <CardImage src={`${comic.thumbnail.path}/portrait_incredible.jpg`} alt="image comics" />
-                          <ContentCard>
-                                <CardTitle>{comic.title}</CardTitle>
-                                <CardPrice>U${comic.prices[0].price}</CardPrice>
-                          </ContentCard>    
-                        </CardContainer>
-                  ))}
-                  </ContentComics>
+            <Container>
+                  <ContentComics>
+                    {comics.slice(currentPage * 10, currentPage * 10 + 10).map((comic) => (
+                      <Link
+                      to={`/comics/${comic.id}`}
+                      style={ { color: 'transparent' } }
+                      >
+                          <CardContainer key={comic.id}>
+                              <ImageContainer>
+                                {rareComics.includes(comic.id) && <h3>Raro</h3>}
+                                <AddCartContainer>
+                                  <AddShoppingCart />
+                                </AddCartContainer>
+                              </ImageContainer>
+                              <CardImage src={`${comic.thumbnail.path}/portrait_incredible.jpg`} alt="image comics" />
+                              <ContentCard>
+                                    <CardTitle>{comic.title}</CardTitle>
+                                    <CardPrice>U${comic.prices[0].price}</CardPrice>
+                              </ContentCard>    
+                            </CardContainer>
+                        </Link>   
+                      ))}
+                      </ContentComics>
+                
                   <ButtonContainer>
                     <Button disabled={currentPage === 1} onClick={handlePrevClick}>Anterior</Button>
                       <span>{currentPage + 1}</span>
