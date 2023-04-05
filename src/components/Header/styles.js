@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
 export const HeaderText = styled.h1`
     font-family: 'Marvel', sans-serif;
     font-size: 2rem;
-    background: linear-gradient(to right, white 50%, rgba(99,0,0,1) 50%);
+    background: linear-gradient(to right, white 50%, rgb(236, 29, 36) 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

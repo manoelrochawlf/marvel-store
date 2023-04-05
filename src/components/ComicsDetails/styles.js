@@ -80,7 +80,7 @@ export const ComicTitle = styled.h1`
 export const ComicPrice = styled.h3`
     font-family: sans-serif;
     font-size: 1rem;
-    color: rgba(99,0,0,1);
+    color: rgb(236, 29, 36);;
     @media screen and (max-width: 768px) {
         
     }
@@ -117,7 +117,7 @@ export const NumPages = styled.h4`
     font-size: 1rem;
     max-width: 35rem;
     max-height: 2rem;
-    color: rgba(99,0,0,1);
+    color: rgb(236, 29, 36);
     @media screen and (max-width: 768px) {
         
     }
@@ -127,7 +127,7 @@ export const FormatComic = styled.h4`
     font-size: 1rem;
     max-width: 35rem;
     max-height: 2rem;;
-    color: rgba(99,0,0,1);
+    color: rgb(236, 29, 36);
     @media screen and (max-width: 768px) {
         
     }
