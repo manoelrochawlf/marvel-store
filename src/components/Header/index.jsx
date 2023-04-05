@@ -9,7 +9,9 @@ const Header = () => {
             <Link to="/">
                 <HeaderText>MARVEL COMICS</HeaderText>
             </Link>
-            <ShoppingCart />
+            <Link to="/shoppingcart">
+                <ShoppingCart />
+            </Link>    
         </HeaderContainer>
      );
 }
