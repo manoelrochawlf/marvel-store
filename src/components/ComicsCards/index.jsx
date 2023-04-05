@@ -8,17 +8,21 @@ import {
   Container,
   ContentCard,
   ContentComics,
-  ImageContainer,
-  ButtonContainer } from "./styles";
-import { useState, useEffect } from "react";
+  NavCard,
+  ButtonContainer,
+  CurrentPage } from "./styles";
+import { useState, useEffect, useContext } from "react";
 import { ComicsService } from "../../services/ComicsServices";
 import AddShoppingCart from "../../assets/icons/AddShoppingCart";
 import { Link } from "react-router-dom";
+import { CardContext } from "../../context/CardContex";
+
 
 const ComicsCards = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
     const [comics, setComics] = useState([]);
     const [rareComics, setRareComics] = useState([]);
+    const { cartItems, addItemToCart } = useContext(CardContext);
 
     useEffect(() => {
         const getComics = async () => {
@@ -52,35 +56,38 @@ const ComicsCards = () => {
       const handleNextClick = () => {
         setCurrentPage(prevPage => prevPage + 1);
       };
+      const handleAddToCart = (item) => {
+        addItemToCart(item);
+      };
+      console.log(cartItems);
 
         return (
             <Container>
                   <ContentComics>
                     {comics.slice(currentPage * 10, currentPage * 10 + 10).map((comic) => (
-                      <Link
-                      to={`/comics/${comic.id}`}
-                      style={ { color: 'transparent' } }
-                      >
                           <CardContainer key={comic.id}>
-                              <ImageContainer>
-                                {rareComics.includes(comic.id) && <h3>Raro</h3>}
-                                <AddCartContainer>
+                              <NavCard>
+                              <CardTitle>{comic.title}</CardTitle>
+                                <AddCartContainer onClick={() => handleAddToCart(comic)}>
                                   <AddShoppingCart />
                                 </AddCartContainer>
-                              </ImageContainer>
+                              </NavCard>
+                              <Link
+                              to={`/comics/${comic.id}`}
+                              style={ { color: 'transparent' } }
+                              >
                               <CardImage src={`${comic.thumbnail.path}/portrait_incredible.jpg`} alt="image comics" />
                               <ContentCard>
-                                    <CardTitle>{comic.title}</CardTitle>
-                                    <CardPrice>U${comic.prices[0].price}</CardPrice>
-                              </ContentCard>    
-                            </CardContainer>
-                        </Link>   
+                                <CardPrice>U${comic.prices[0].price}</CardPrice>
+                                {rareComics.includes(comic.id) && <h3>Raro</h3>}
+                              </ContentCard>  
+                              </Link>   
+                            </CardContainer>  
                       ))}
                       </ContentComics>
-                
                   <ButtonContainer>
-                    <Button disabled={currentPage === 1} onClick={handlePrevClick}>Anterior</Button>
-                      <span>{currentPage + 1}</span>
+                    <Button disabled={currentPage === 0} onClick={handlePrevClick}>Anterior</Button>
+                      <CurrentPage>{currentPage + 1}</CurrentPage>
                     <Button disabled={currentPage === 4} onClick={handleNextClick}>Próxima</Button>
                   </ButtonContainer>
             </Container>
